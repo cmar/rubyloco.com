@@ -1,18 +1,39 @@
-<body ng-app="rubyLoco">
-  <h1>RubyLoCo Angular App</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyLoCo</title>
 
-  <div ng-controller="PhotosCtrl as p">
-    <div ng-repeat="event in p.events">
-      <p>{{event.name}}</p>
-      <p>{{event.time}}</p>
-      <p>{{event.event_url}}</p>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container" ng-app="rubyLoco">
+      <h1>RubyLoCo Angular App</h1>
+
+      <div ng-controller="PhotosCtrl as p">
+        <div ng-repeat="event in p.events">
+          <p>{{event.name}}</p>
+          <p>{{event.time}}</p>
+          <p>{{event.event_url}}</p>
+        </div>
+
+        <div ng-repeat="photo in p.photos">
+          <img ng-src="{{photo.photo_link}}">
+        </div>
+      </div>
     </div>
 
-    <div ng-repeat="photo in p.photos">
-      <img ng-src="{{photo.photo_link}}">
-    </div>
-  </div>
-</body>
-
-<script src="js/angular.min.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
