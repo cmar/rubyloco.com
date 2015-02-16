@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var deploy = require('gulp-gh-pages');
 
 gulp.task('js', function() {
   return gulp.src(['./app/js/app.js',
@@ -12,8 +13,9 @@ gulp.task('html', function() {
    .pipe(gulp.dest('./build/'))
 })
 
-gulp.task('default', function(){
-  process.stdout.write('hello')
+gulp.task('deploy', ['default'], function () {
+  return gulp.src('./build/**/*')
+    .pipe(deploy())
 })
 
 gulp.task('serve', function() {
@@ -25,4 +27,8 @@ gulp.task('serve', function() {
 
   gulp.watch(['./app/*.html'], ['html', browserSync.reload])
   gulp.watch(['./app/**/*.js'], ['js', browserSync.reload])
-});
+})
+
+gulp.task('default', ['js', 'html'], function(){
+  process.stdout.write('hello')
+})
