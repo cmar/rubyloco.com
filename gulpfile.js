@@ -8,9 +8,20 @@ gulp.task('js', function() {
    .pipe(gulp.dest('./build/js/'))
 })
 
+gulp.task('css', function() {
+  return gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.min.css',
+                   './app/css/**'])
+   .pipe(gulp.dest('./build/css/'))
+})
+
 gulp.task('html', function() {
   return gulp.src('./app/*.html')
    .pipe(gulp.dest('./build/'))
+})
+
+
+gulp.task('default', ['js', 'css', 'html'], function(){
+  process.stdout.write('hello')
 })
 
 gulp.task('deploy', ['default'], function () {
@@ -26,9 +37,6 @@ gulp.task('serve', function() {
   })
 
   gulp.watch(['./app/*.html'], ['html', browserSync.reload])
-  gulp.watch(['./app/**/*.js'], ['js', browserSync.reload])
-})
-
-gulp.task('default', ['js', 'html'], function(){
-  process.stdout.write('hello')
+  gulp.watch(['./app/js/**'], ['js', browserSync.reload])
+  gulp.watch(['./app/css/**'], ['css', browserSync.reload])
 })
