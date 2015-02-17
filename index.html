@@ -22,13 +22,13 @@
 
       <div ng-controller="PhotosCtrl as p">
         <div ng-repeat="event in p.events">
-          <p>{{event.name}}</p>
+          <h2>{{event.name}}</h2>
           <p>{{event.time | date:'medium'}}</p>
-          <p>{{event.event_url}}</p>
+          <p><a href="{{event.event_url}}">rsvp on meetup.com</a></p>
         </div>
 
         <div ng-repeat="photo in p.photos">
-          <img ng-src="{{photo.photo_link}}">
+          <img ng-src="{{photo.thumb_link}}">
         </div>
       </div>
     </div>

@@ -33,6 +33,7 @@ app.controller('PhotosCtrl', ['meetup', function(meetup) {
 
     meetup.photos()
       .success(function(data, status, headers, config) {
+        console.log(data.results)
         self.photos = data.results;
       })
       .error(function(data, status, headers, config) {
