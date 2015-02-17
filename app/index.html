@@ -23,7 +23,7 @@
       <div ng-controller="PhotosCtrl as p">
         <div ng-repeat="event in p.events">
           <p>{{event.name}}</p>
-          <p>{{event.time}}</p>
+          <p>{{event.time | date:'medium'}}</p>
           <p>{{event.event_url}}</p>
         </div>
 

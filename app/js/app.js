@@ -25,7 +25,7 @@ app.controller('PhotosCtrl', ['meetup', function(meetup) {
   self.update = function() {
     meetup.events()
       .success(function(data, status, headers, config) {
-        self.events = data.results;
+        self.events = data.results.slice(0, 3);
       })
       .error(function(data, status, headers, config) {
         console.log(data)
