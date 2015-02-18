@@ -1,6 +1,6 @@
-var app = angular.module('rubyLoco', []);
+var app = angular.module('rubyLoco', [])
 
-app.factory('meetup', ['$http', function($http) {
+app.factory('Meetup', ['$http', function($http) {
 
   var photos = function() {
     return $http.jsonp("http://api.meetup.com/2/photos/?group_id=8825222&order=time&desc=True&offset=0&format=json&page=200&fields=&sig_id=9228642&sig=05f5138c0ffcee4bbbbd69a33edb6e591f6bcc0b&callback=JSON_CALLBACK")
@@ -16,29 +16,37 @@ app.factory('meetup', ['$http', function($http) {
   }
 }])
 
-app.controller('PhotosCtrl', ['meetup', function(meetup) {
-  var self = this;
+app.controller('EventsCtrl', ['Meetup', function(meetup) {
+  var self = this
 
-  self.events = []
-  self.photos = []
+  self.upcoming = []
 
   self.update = function() {
     meetup.events()
       .success(function(data, status, headers, config) {
-        self.events = data.results.slice(0, 3);
+        self.upcoming = data.results.slice(0, 3)
       })
       .error(function(data, status, headers, config) {
         console.log(data)
-      });
+      })
+  }
 
+  self.update()
+}])
+
+app.controller('PhotosCtrl', ['Meetup', function(meetup) {
+  var self = this
+
+  self.recent = []
+
+  self.update = function() {
     meetup.photos()
       .success(function(data, status, headers, config) {
-        console.log(data.results)
-        self.photos = data.results;
+        self.recent = data.results
       })
       .error(function(data, status, headers, config) {
         console.log(data)
-      });
+      })
   }
 
   self.update()

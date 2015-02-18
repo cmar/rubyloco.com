@@ -20,14 +20,16 @@
     <div class="container" ng-app="rubyLoco">
       <h1>RubyLoCo Angular App</h1>
 
-      <div ng-controller="PhotosCtrl as p">
-        <div ng-repeat="event in p.events">
+      <div ng-controller="EventsCtrl as events">
+        <div ng-repeat="event in events.upcoming">
           <h2>{{event.name}}</h2>
           <p>{{event.time | date:'medium'}}</p>
           <p><a href="{{event.event_url}}">rsvp on meetup.com</a></p>
         </div>
+      </div>
 
-        <div ng-repeat="photo in p.photos">
+      <div ng-controller="PhotosCtrl as photos">
+        <div ng-repeat="photo in photos.recent">
           <img ng-src="{{photo.thumb_link}}">
         </div>
       </div>
