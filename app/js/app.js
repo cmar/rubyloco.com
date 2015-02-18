@@ -10,9 +10,14 @@ app.factory('Meetup', ['$http', function($http) {
     return $http.jsonp("http://api.meetup.com//2/events/?group_id=8825222&status=upcoming&order=time&limited_events=False&desc=false&offset=0&format=json&page=200&fields=&sig_id=9228642&sig=7e9df3f8cdbe03c41cb42ee8aa90def04e71bf68&callback=JSON_CALLBACK")
   }
 
+  var sponsors = function() {
+    return $http.jsonp("http://api.meetup.com/2/groups?group_id=8825222&radius=25.0&order=id&desc=false&offset=0&format=json&page=500&fields=sponsors&sig_id=13745894&sig=288da9174a8ce352ee1bdc0af34013592d49f612&callback=JSON_CALLBACK")
+  }
+
   return {
     events: events,
-    photos: photos
+    photos: photos,
+    sponsors: sponsors
   }
 }])
 
@@ -43,6 +48,24 @@ app.controller('PhotosCtrl', ['Meetup', function(meetup) {
     meetup.photos()
       .success(function(data, status, headers, config) {
         self.recent = data.results
+      })
+      .error(function(data, status, headers, config) {
+        console.log(data)
+      })
+  }
+
+  self.update()
+}])
+
+app.controller('SponsorsCtrl', ['Meetup', function(meetup) {
+  var self = this
+
+  self.all = []
+
+  self.update = function() {
+    meetup.sponsors()
+      .success(function(data, status, headers, config) {
+        self.all = data.results[0].sponsors
       })
       .error(function(data, status, headers, config) {
         console.log(data)
