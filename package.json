@@ -4,7 +4,6 @@
   "description": "gh-pages hosted website for RubyLoCo",
   "main": "gulpfile.js",
   "dependencies": {
-    "bower": "^1.3.12",
     "browser-sync": "^2.1.1",
     "gulp": "^3.8.11",
     "gulp-gh-pages": "^0.4.0"

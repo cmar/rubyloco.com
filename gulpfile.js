@@ -3,14 +3,12 @@ var browserSync = require('browser-sync');
 var deploy = require('gulp-gh-pages');
 
 gulp.task('js', function() {
-  return gulp.src(['./app/js/app.js',
-            './bower_components/angular/angular.min.*'])
+  return gulp.src('./app/js/**/*.js')
    .pipe(gulp.dest('./build/js/'))
 })
 
 gulp.task('css', function() {
-  return gulp.src(['./bower_components/bootstrap/dist/css/bootstrap.min.css',
-                   './app/css/**'])
+  return gulp.src('./app/css/**/*.css')
    .pipe(gulp.dest('./build/css/'))
 })
 
