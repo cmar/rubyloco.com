@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +32,15 @@
       <div ng-controller="PhotosCtrl as photos">
         <div ng-repeat="photo in photos.recent">
           <img ng-src="{{photo.thumb_link}}">
+        </div>
+      </div>
+
+      <div ng-controller="SponsorsCtrl as sponsors">
+        <div ng-repeat="sponsor in sponsors.all">
+          <h2>{{sponsor.name}}</h2>
+          <p>{{sponsor.details}}
+          <img ng-src="{{sponsor.image_url}}">
+          <a href="{{sponsor.url">{{sponsor.url}}</a>
         </div>
       </div>
     </div>
